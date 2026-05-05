@@ -1,0 +1,6 @@
+Package: HelixSysAllocatorVault
+Type: Package
+Title: HelixSysAllocatorVault
+Version: 0.1.0
+License: MIT
+Description: Build an R toolkit that studies allocator behavior through windowed input fixtures, with late-data behavior checks and no production deployment claims.
