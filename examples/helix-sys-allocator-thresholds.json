@@ -1,0 +1,17 @@
+{
+  "repo": "helix-sys-allocator-vault",
+  "thresholds": {
+    "signal": 4,
+    "slack": 2,
+    "confidence": 2,
+    "drag": 5,
+    "ship": 172,
+    "watch": 107
+  },
+  "terms": [
+    "allocation pressure",
+    "dirty state",
+    "guard slack",
+    "layout drift"
+  ]
+}
