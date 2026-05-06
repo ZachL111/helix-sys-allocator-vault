@@ -1,0 +1,6 @@
+name,focus,signal,slack,drag,confidence,score,lane
+baseline,allocation pressure,62,39,12,63,190,ship
+stress,dirty state,66,54,19,49,178,ship
+edge,guard slack,59,50,9,46,187,ship
+recovery,layout drift,66,35,8,45,188,ship
+stale,allocation pressure,54,23,9,45,149,ship

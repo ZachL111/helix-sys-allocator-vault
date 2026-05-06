@@ -1,0 +1,73 @@
+{
+  "repo": "helix-sys-allocator-vault",
+  "language": "R",
+  "category": "Systems programming",
+  "goal": "Build an R toolkit that studies allocator behavior through windowed input fixtures, with late-data behavior checks and no production deployment claims.",
+  "review_model": {
+    "terms": [
+      "allocation pressure",
+      "dirty state",
+      "guard slack",
+      "layout drift"
+    ],
+    "lanes": [
+      "ship",
+      "watch",
+      "hold"
+    ],
+    "score": "signal * 2 + slack + confidence - drag * 3",
+    "purpose": "surface the domain-specific cases that need the most careful review"
+  },
+  "cases": [
+    {
+      "name": "baseline",
+      "focus": "allocation pressure",
+      "signal": 62,
+      "slack": 39,
+      "drag": 12,
+      "confidence": 63,
+      "score": 190,
+      "lane": "ship"
+    },
+    {
+      "name": "stress",
+      "focus": "dirty state",
+      "signal": 66,
+      "slack": 54,
+      "drag": 19,
+      "confidence": 49,
+      "score": 178,
+      "lane": "ship"
+    },
+    {
+      "name": "edge",
+      "focus": "guard slack",
+      "signal": 59,
+      "slack": 50,
+      "drag": 9,
+      "confidence": 46,
+      "score": 187,
+      "lane": "ship"
+    },
+    {
+      "name": "recovery",
+      "focus": "layout drift",
+      "signal": 66,
+      "slack": 35,
+      "drag": 8,
+      "confidence": 45,
+      "score": 188,
+      "lane": "ship"
+    },
+    {
+      "name": "stale",
+      "focus": "allocation pressure",
+      "signal": 54,
+      "slack": 23,
+      "drag": 9,
+      "confidence": 45,
+      "score": 149,
+      "lane": "ship"
+    }
+  ]
+}

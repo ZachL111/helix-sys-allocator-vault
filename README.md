@@ -1,67 +1,40 @@
 # helix-sys-allocator-vault
 
-`helix-sys-allocator-vault` explores systems programming in R. The repository keeps the core rule set compact, then surrounds it with examples that show how the decisions move.
+`helix-sys-allocator-vault` explores systems programming with a small R codebase and local fixtures. The technical goal is to build an R toolkit that studies allocator behavior through windowed input fixtures, with late-data behavior checks and no production deployment claims.
 
-## Helix Sys Allocator Vault Notes
+## Use Case
 
-The quickest review path is the verifier first, then the fixtures, then the operations note. That order makes it easy to see whether the code, data, and explanation still agree.
+This is intentionally local and self-contained so it can be inspected without credentials, services, or seeded history.
 
-## Why This Exists
+## Helix Sys Allocator Vault Review Notes
 
-I use this kind of project to make a rule visible before adding more machinery around it. The important part here is not the size of the codebase. It is that the input signals, scoring rule, fixture data, and expected output can all be checked in one sitting.
+Start with `allocation pressure` and `allocation pressure`. Those cases create the widest score spread in this repo, so they are the best quick check when the model changes.
 
-## Code Tour
+## Highlights
 
-- `tests`: verification harness
-- `fixtures`: compact golden scenarios
-- `examples`: expanded scenario set
-- `metadata`: project constants and verification metadata
-- `docs`: operations and extension notes
-- `scripts`: local verification and audit commands
+- `fixtures/domain_review.csv` adds cases for allocation pressure and dirty state.
+- `metadata/domain-review.json` records the same cases in structured form.
+- `config/review-profile.json` captures the read order and the two review questions.
+- `examples/helix-sys-allocator-walkthrough.md` walks through the case spread.
+- The R code includes a review path for `allocation pressure` and `allocation pressure`.
+- `docs/field-notes.md` explains the strongest and weakest cases.
 
-## Feature Notes
+## Code Layout
 
-- Includes extended examples for bounds checks, including `surge` and `degraded`.
-- Documents low-level invariants tradeoffs in `docs/operations.md`.
-- Runs locally with a single verification command and no external credentials.
-- Stores project constants and verification metadata in `metadata/project.json`.
-- Adds a repository audit script that checks structure before running the language verifier.
+The fixture data drives the tests. The code stays thin, while `metadata/domain-review.json` and `config/review-profile.json` explain what each case is meant to protect.
 
-## Implementation Notes
+The R addition stays small enough to inspect in one sitting.
 
-The project is organized around a compact model rather than a large framework. Inputs are scored, classified, and checked against golden fixtures. The constants live in code and are mirrored in metadata so documentation drift is easy to catch. The R version keeps the model as simple functions over named lists for easy analysis use.
-
-## Local Setup
-
-Install R and run the commands from the repository root. The project does not need credentials or a hosted service.
-
-## Example Scenarios
-
-`examples/extended_cases.csv` adds six named cases. I kept the names plain so failures are easy to read in a terminal: baseline, pressure, surge, degraded, recovery, and boundary.
-
-## Try It
+## Run The Check
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/verify.ps1
 ```
 
-This runs the language-level build or test path against the compact fixture set.
+## Regression Path
 
-## Tests
+That command is also the regression path. It verifies the domain cases and catches mismatches between the CSV, metadata, and code.
 
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/audit.ps1
-```
+## Future Work
 
-The audit command checks repository structure and README constraints before it delegates to the verifier.
-
-## Roadmap
-
-- Split the scoring constants into a typed configuration object and validate it before use.
-- Add a comparison mode that shows how decisions change when one signal is adjusted.
-- Add a loader for `examples/extended_cases.csv` and promote selected cases into the language test suite.
-- Add one more systems programming fixture that focuses on a malformed or borderline input.
-
-## Boundaries
-
-The fixture set is deliberately small. That keeps the review surface clear, but it also means the model should not be treated as a complete domain simulator.
+The repository is intentionally scoped to local checks. I would expand it by adding adversarial fixtures before adding features.
